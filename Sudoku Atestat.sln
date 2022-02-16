@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku Atestat", "Sudoku Atestat\Sudoku Atestat.csproj", "{3CE32473-6E35-4C52-98B5-58FAE4DB0E57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CE32473-6E35-4C52-98B5-58FAE4DB0E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE32473-6E35-4C52-98B5-58FAE4DB0E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE32473-6E35-4C52-98B5-58FAE4DB0E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE32473-6E35-4C52-98B5-58FAE4DB0E57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C814EBC-09B7-4C01-ABAB-B1422307D4E7}
+	EndGlobalSection
+EndGlobal
