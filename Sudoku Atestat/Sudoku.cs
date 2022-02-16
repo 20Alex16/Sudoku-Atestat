@@ -17,6 +17,10 @@ namespace Sudoku_Atestat
         public Sudoku()
         {
             InitializeComponent();
+
+            panel1.Parent = this;
+            panel1.BackColor = Color.Transparent;
+
             game = new SudokuEngine(panel1, Properties.Resources.sudokuRez);
         }
     }

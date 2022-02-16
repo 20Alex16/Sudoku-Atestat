@@ -34,12 +34,12 @@ namespace Sudoku_Atestat
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(135, 12);
+            this.panel1.Location = new System.Drawing.Point(134, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(508, 423);
+            this.panel1.Size = new System.Drawing.Size(432, 415);
             this.panel1.TabIndex = 0;
             // 
-            // Form1
+            // Sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -47,7 +47,7 @@ namespace Sudoku_Atestat
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "Sudoku";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
