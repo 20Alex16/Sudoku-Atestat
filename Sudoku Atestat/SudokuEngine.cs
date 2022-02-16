@@ -12,16 +12,17 @@ namespace Sudoku_Atestat
     {
         private matrice9x9 mat; // matrice de numere(byte)
         private matriceSudoku9x9 matB; // matrice de butoane
+        private int missingNumbers;
+        private Random randomObject;
 
         public SudokuEngine(Panel container, string solvedMatrix)
         {
             mat = new matrice9x9(solvedMatrix);
-            matB = new matriceSudoku9x9(container, mat, 5);
-
-            mat.print();
             mat.Shuffle();
-            Console.WriteLine();
-            mat.print();
+            randomObject = new Random(); randomObject.Next(); // refresh
+            missingNumbers = randomObject.Next(15,40);
+            //mat.print();
+            matB = new matriceSudoku9x9(container, mat.AlterNewMatrix(missingNumbers), 5);
         }
     }
 
@@ -44,6 +45,39 @@ namespace Sudoku_Atestat
             }
         }
 
+        private matrice9x9()
+        {
+            mat = new byte[9,9];
+        }
+
+        public matrice9x9 AlterNewMatrix(int changesLeft) // restricted to 40 missings!
+        {
+            changesLeft = clamp(changesLeft, 15, 40);
+            matrice9x9 rez = new matrice9x9();
+            for (int i = 0; i < 9; i++) // shallow copy
+                for (int j = 0; j < 9; j++)
+                    rez.mat[i, j] = this.mat[i, j];
+
+            // now make some variables go poof!
+            Random rand = new Random(); rand.Next(); // refresh
+            int x, y; // parameter naming issue =//
+            while(changesLeft > 0)
+            {
+                x = rand.Next(0,9);
+                y = rand.Next(0,9);
+
+                if(rez.mat[x,y] != 0)
+                {
+                    rez.mat[x, y] = 0;
+                    changesLeft--;
+                }
+            }
+
+            return rez;
+        }
+
+        public int clamp(int x, int mi, int ma) => Math.Min(ma, Math.Max(x,mi));
+
         #region matrixShuffle
         public void Shuffle() // @TODO: Shuffle with random actions
         {
@@ -56,10 +90,10 @@ namespace Sudoku_Atestat
             //shuffleFuncList.Add(MirrorPrincipalDiagonal);
             //shuffleFuncList.Add(MirrorSecondaryDiagonal);
 
-            Random rand = new Random();
-            for(int i = 1; i < rand.Next(1,2); i++)
+            Random rand = new Random(); rand.Next();
+            for(int i = 1; i < rand.Next(5,10); i++)
             {
-                switch (rand.Next(0, 8))
+                switch (rand.Next(1, 7))
                 {
                     case 0: this.Rot180(); break;
                     case 1: this.RotRight90(); break;
@@ -189,8 +223,10 @@ namespace Sudoku_Atestat
                         Width = szB,
                         Height = szB,
                         Location = new Point(i*(padding+szB), j*(padding+szB)),
-                        expectedNumber = m.getMatrix()[i,j]
+                        expectedNumber = m.getMatrix()[i,j],
+                        Text = (m.getMatrix()[i, j] != 0 ? m.getMatrix()[i, j].ToString() : "")
                     };
+                    b.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
                     mat[i, j] = b;
                     b.Parent = container;
