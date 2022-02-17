@@ -22,6 +22,17 @@ namespace Sudoku_Atestat
             panel1.BackColor = Color.Transparent;
 
             game = new SudokuEngine(panel1, Properties.Resources.sudokuRez);
+            game.Start();
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(game.Verifica());
         }
     }
 }
