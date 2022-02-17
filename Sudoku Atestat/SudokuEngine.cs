@@ -27,7 +27,7 @@ namespace Sudoku_Atestat
             mat.Shuffle();
 
             randomObject = new Random(); randomObject.Next(); // refresh
-            missingNumbers = randomObject.Next(5,30);
+            missingNumbers = randomObject.Next(10,25);
 
             matB = new matriceSudoku9x9(container, mat, missingNumbers, dropdown, 5);
         }
@@ -224,7 +224,7 @@ namespace Sudoku_Atestat
 
         private Color colorBdefault = Color.Wheat;
         private Color colorBPending = Color.DarkSeaGreen;
-        private Color colorBCompletion = Color.LightPink;
+        private Color colorBCompletion = Color.LightBlue;
         private Color colorBRight = Color.LightGreen;
         private Color colorBWrong = Color.Tomato;
         private Color colorBSelected = Color.Magenta;
@@ -357,6 +357,12 @@ namespace Sudoku_Atestat
         public bool isPlayable;
         public int butonI, butonJ;
 
+        public ButtonSudoku()
+        {
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderSize = 0;
+        }
+
         public bool isOk()
         {
             if (!isPlayable) return true;
@@ -393,6 +399,8 @@ namespace Sudoku_Atestat
                         Text = (j*3+i+1).ToString()
                     };
 
+                    b.FlatAppearance.MouseOverBackColor = Color.CadetBlue;
+                    b.FlatAppearance.BorderSize = 0;
                     b.Click += (o, e) => ButtonPicked?.Invoke(this, new Button9EventArgs(Convert.ToInt32(b.Text)));
 
                     buttonList.Add(b);
