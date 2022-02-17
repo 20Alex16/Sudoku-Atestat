@@ -36,7 +36,7 @@ namespace Sudoku_Atestat
             // 
             this.panel1.Location = new System.Drawing.Point(134, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(432, 415);
+            this.panel1.Size = new System.Drawing.Size(509, 415);
             this.panel1.TabIndex = 0;
             // 
             // Sudoku

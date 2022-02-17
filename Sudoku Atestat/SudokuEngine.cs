@@ -14,15 +14,23 @@ namespace Sudoku_Atestat
         private matriceSudoku9x9 matB; // matrice de butoane
         private int missingNumbers;
         private Random randomObject;
+        private ButtonSudoku selectedButton = null;
+        private DropdownMenu9b dropdown;
 
         public SudokuEngine(Panel container, string solvedMatrix)
         {
+            dropdown = new DropdownMenu9b(new string[]{ // butoane de la 1 la 9
+                "1", "2", "3", "4", "5", "6", "7", "8", "9"
+            });
+            dropdown.Parent = container;
+
             mat = new matrice9x9(solvedMatrix);
             mat.Shuffle();
+
             randomObject = new Random(); randomObject.Next(); // refresh
             missingNumbers = randomObject.Next(15,40);
-            //mat.print();
-            matB = new matriceSudoku9x9(container, mat.AlterNewMatrix(missingNumbers), 5);
+
+            matB = new matriceSudoku9x9(container, mat.AlterNewMatrix(missingNumbers), dropdown, 5);
         }
     }
 
@@ -206,14 +214,25 @@ namespace Sudoku_Atestat
     {
         private Button[,] mat;
         private Panel container;
+        private DropdownMenu9b dropdown;
+        private ButtonSudoku selectedButton = null;
 
-        public matriceSudoku9x9(Panel c, matrice9x9 m, int padding = 2)
+        private Color colorBdefault = Color.Wheat;
+        private Color colorBPending = Color.DarkSeaGreen;
+        private Color colorBCompletion = Color.LightPink;
+        private Color colorBRight = Color.Green;
+        private Color colorBWrong = Color.Red;
+
+        public matriceSudoku9x9(Panel c, matrice9x9 m, DropdownMenu9b drpmnu, int padding = 2)
         {
             container = c;
+            dropdown = drpmnu;
             mat = new ButtonSudoku[9,9];
 
             int sz = Math.Min(container.Width, container.Height); // totalSize
             int szB = (sz-8*padding)/9; // buttonSize
+
+            byte[,] auxiliaryMatrix = m.getMatrix();
 
             for(int i = 0; i < 9; i++)
                 for(int j = 0; j < 9; j++)
@@ -223,14 +242,37 @@ namespace Sudoku_Atestat
                         Width = szB,
                         Height = szB,
                         Location = new Point(i*(padding+szB), j*(padding+szB)),
-                        expectedNumber = m.getMatrix()[i,j],
-                        Text = (m.getMatrix()[i, j] != 0 ? m.getMatrix()[i, j].ToString() : "")
+                        expectedNumber = auxiliaryMatrix[i,j],
+                        Text = (auxiliaryMatrix[i, j] != 0 ? m.getMatrix()[i, j].ToString() : ""),
+                        BackColor = (auxiliaryMatrix[i, j] != 0 ? colorBdefault : colorBPending),
+                        isPlayable = auxiliaryMatrix[i,j] == 0
                     };
-                    b.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    b.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+
+                    if(b.isPlayable)
+                        b.Click += (o, e) =>
+                        {
+                            if (selectedButton == b) dropdown.Visible = !dropdown.Visible;
+                            else
+                            {
+                                selectedButton = b;
+                                dropdown.Visible = true;
+                                dropdown.Location = new Point(b.Location.X+b.Width+1, b.Location.Y+1);
+                            }
+                        };
 
                     mat[i, j] = b;
                     b.Parent = container;
                 }
+
+            dropdown.ButtonPicked += (o, e) =>
+            {
+                if (selectedButton != null)
+                {
+                    selectedButton.Text = ((Button9EventArgs)e).value.ToString();
+                    selectedButton.BackColor = colorBCompletion;
+                }
+            };
 
             Graphics graphics = container.CreateGraphics();
             Brush br = new SolidBrush(Color.MediumPurple);
@@ -249,5 +291,52 @@ namespace Sudoku_Atestat
     public class ButtonSudoku : Button
     {
         public byte expectedNumber = 0;
+        public bool isPlayable;
+    }
+
+    public class DropdownMenu9b : Panel
+    {
+        private int bSize = 30;
+        private List<Button> buttonList;
+        private int padding = 2;
+
+        public event EventHandler ButtonPicked;
+
+        public DropdownMenu9b(object[] items, int x = 0, int y = 0)
+        {
+            Location = new Point(x, y);
+            Size = new Size(bSize*3+2*padding, bSize*3+2*padding);
+            buttonList = new List<Button>();
+            Visible = false; ///////////////////////////////////////////////// if it doesnt work, change this!!!
+
+            for(int i = 0; i < 3; i++)
+                for(int j = 0; j < 3; j++)
+                {
+                    Button b = new Button()
+                    {
+                        Location = new Point(i*(bSize+padding), j*(bSize+padding)),
+                        Size = new Size(bSize, bSize),
+                        Font = new Font("Times New Roman", 15),
+                        FlatStyle = FlatStyle.Flat,
+                        BackColor = Color.Aquamarine,
+                        Text = (j*3+i+1).ToString()
+                    };
+
+                    b.Click += (o, e) => ButtonPicked?.Invoke(this, new Button9EventArgs(Convert.ToInt32(b.Text)));
+
+                    buttonList.Add(b);
+                    b.Parent = this;
+                }
+        }
+    }
+
+    public class Button9EventArgs : EventArgs
+    {
+        public int value;
+
+        public Button9EventArgs(int val)
+        {
+            value = val;
+        }
     }
 }
