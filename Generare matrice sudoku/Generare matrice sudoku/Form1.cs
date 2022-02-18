@@ -38,15 +38,17 @@ namespace Generare_matrice_sudoku
 
             FormClosing += (o, e) => outStream.Close();
 
-            int solutii_necesare = 10;
+            int solutii_necesare = 1000;
 
             backtrackingGen(0, 0, () =>
             {
                 writeMatrix(outStream);
-                afisMat();
-                Console.WriteLine("matrice gasita!");
-                Thread.Sleep(100);
+                //afisMat();
+                //Console.WriteLine("matrice gasita!");
+                //Thread.Sleep(100);
             }, ref solutii_necesare);
+
+            Console.WriteLine($"Am gasit si salvat solutiile cerute!");
 
             outStream.Close();
         }
