@@ -272,8 +272,8 @@ namespace Sudoku_Atestat
                                 selectButton(b);
 
                                 dropdown.Location = new Point(
-                                    b.Location.X + (b.butonI > 7 ? -dropdown.Width-1 : b.Width+1),
-                                    b.Location.Y + (b.butonJ > 7 ? -dropdown.Height+b.Height-2 : 0)
+                                    b.Location.X + (b.butonI > 6 ? -dropdown.Width-1 : b.Width+1),
+                                    b.Location.Y + (b.butonJ > 6 ? -dropdown.Height+b.Height-2 : 0)
                                 );
 
                                 dropdown.Visible = true;
