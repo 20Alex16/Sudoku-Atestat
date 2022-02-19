@@ -40,8 +40,11 @@ namespace Sudoku_Atestat
     public class matrice9x9
     {
         private byte[,] mat;
+        private Generare_matrice_sudoku.SudokuGenerator generator = new Generare_matrice_sudoku.SudokuGenerator();
 
         public matrice9x9(string solvedMatrix) {
+            // varianta 1: citire din fisier
+            /*
             mat = new byte[9,9];
             int i = 0, j = 0;
             foreach (var strRow in solvedMatrix.Split('\n'))
@@ -53,7 +56,11 @@ namespace Sudoku_Atestat
                 }
                 i++;
                 if (i == 9) break; // this is for testing
-            }
+            } 
+            */
+
+            // varianta 2: generare backtracking
+            mat = generator.GenereazaMatrice();
         }
 
         private matrice9x9()
