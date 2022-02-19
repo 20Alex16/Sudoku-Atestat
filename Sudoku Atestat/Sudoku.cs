@@ -13,6 +13,7 @@ namespace Sudoku_Atestat
     public partial class Sudoku : Form
     {
         SudokuEngine game;
+        AdvancedGraphics ad;
 
         public Sudoku()
         {
@@ -20,8 +21,12 @@ namespace Sudoku_Atestat
 
             panel1.Parent = this;
             panel1.BackColor = Color.Transparent;
+            //TransparencyKey = Color.BlanchedAlmond;
 
             game = new SudokuEngine(panel1, Properties.Resources.sudokuRez);
+            ad = new AdvancedGraphics(this);
+            this.DoubleBuffered = true;
+
             game.Start();
         }
 

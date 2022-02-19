@@ -36,6 +36,7 @@ namespace Sudoku_Atestat
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Location = new System.Drawing.Point(52, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(509, 415);
@@ -73,7 +74,7 @@ namespace Sudoku_Atestat
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku_Atestat.Properties.Resources.tai_chi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(752, 450);
+            this.ClientSize = new System.Drawing.Size(1082, 617);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.panel1);

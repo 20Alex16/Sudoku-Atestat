@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedGraphics.cs" />
     <Compile Include="GenSudokuMatrix.cs" />
     <Compile Include="Sudoku.cs">
       <SubType>Form</SubType>

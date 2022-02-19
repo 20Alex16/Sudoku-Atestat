@@ -23,7 +23,7 @@ namespace Sudoku_Atestat
             });
             dropdown.Parent = container;
 
-            mat = new matrice9x9(solvedMatrix);
+            mat = new matrice9x9(); // generam o matrice noua la fiecare joc nou //solvedMatrix);
             mat.Shuffle();
 
             randomObject = new Random(); randomObject.Next(); // refresh
@@ -34,6 +34,8 @@ namespace Sudoku_Atestat
 
         public void Start() => matB.StartGame();
 
+        public bool isRunning() => matB.isRunning();
+
         public bool Verifica() => matB.Check();
     }
 
@@ -42,10 +44,8 @@ namespace Sudoku_Atestat
         private byte[,] mat;
         private Generare_matrice_sudoku.SudokuGenerator generator = new Generare_matrice_sudoku.SudokuGenerator();
 
-        public matrice9x9(string solvedMatrix) {
-            // varianta 1: citire din fisier
-            /*
-            mat = new byte[9,9];
+        public matrice9x9(string solvedMatrix) { // varianta 1: citire din fisier
+            mat = new byte[9, 9];
             int i = 0, j = 0;
             foreach (var strRow in solvedMatrix.Split('\n'))
             {
@@ -56,16 +56,12 @@ namespace Sudoku_Atestat
                 }
                 i++;
                 if (i == 9) break; // this is for testing
-            } 
-            */
-
-            // varianta 2: generare backtracking
-            mat = generator.GenereazaMatrice();
+            }
         }
 
-        private matrice9x9()
-        {
-            mat = new byte[9,9];
+        public matrice9x9() // varianta 2: generare backtracking
+        {            
+            mat = generator.GenereazaMatrice();
         }
 
         public matrice9x9 AlterNewMatrix(int changesLeft) // restricted to 30 missing places!
@@ -313,6 +309,8 @@ namespace Sudoku_Atestat
                 graphics.FillRectangle(br, 5 * padding + 6 * szB, 0, padding, 8 * padding + 9 * szB); // vertical right
             };
         }
+
+        public bool isRunning() => gameState;
 
         public void StartGame() => gameState = true;
 
