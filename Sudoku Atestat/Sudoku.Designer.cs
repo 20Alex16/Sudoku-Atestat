@@ -32,6 +32,9 @@ namespace Sudoku_Atestat
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sudoku));
             this.exit = new System.Windows.Forms.Button();
             this.verifica = new System.Windows.Forms.Button();
+            this.credentials = new System.Windows.Forms.Label();
+            this.new_game = new System.Windows.Forms.Button();
+            this.score_summary = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exit
@@ -46,7 +49,7 @@ namespace Sudoku_Atestat
             this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.Location = new System.Drawing.Point(825, 42);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(99, 56);
+            this.exit.Size = new System.Drawing.Size(100, 60);
             this.exit.TabIndex = 1;
             this.exit.Text = "Iesire";
             this.exit.UseVisualStyleBackColor = false;
@@ -64,11 +67,55 @@ namespace Sudoku_Atestat
             this.verifica.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verifica.Location = new System.Drawing.Point(29, 42);
             this.verifica.Name = "verifica";
-            this.verifica.Size = new System.Drawing.Size(99, 56);
+            this.verifica.Size = new System.Drawing.Size(100, 60);
             this.verifica.TabIndex = 2;
             this.verifica.Text = "Verifica";
             this.verifica.UseVisualStyleBackColor = false;
             this.verifica.Click += new System.EventHandler(this.verifica_Click);
+            // 
+            // credentials
+            // 
+            this.credentials.AutoSize = true;
+            this.credentials.BackColor = System.Drawing.Color.Transparent;
+            this.credentials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.credentials.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.credentials.ForeColor = System.Drawing.Color.DarkViolet;
+            this.credentials.Location = new System.Drawing.Point(528, 588);
+            this.credentials.Name = "credentials";
+            this.credentials.Size = new System.Drawing.Size(424, 26);
+            this.credentials.TabIndex = 3;
+            this.credentials.Text = "Atestat la informatica -Tripa Alexandru - XII A";
+            // 
+            // new_game
+            // 
+            this.new_game.BackColor = System.Drawing.Color.Transparent;
+            this.new_game.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("new_game.BackgroundImage")));
+            this.new_game.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.new_game.FlatAppearance.BorderSize = 0;
+            this.new_game.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.new_game.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.new_game.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.new_game.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.new_game.Location = new System.Drawing.Point(15, 534);
+            this.new_game.Name = "new_game";
+            this.new_game.Size = new System.Drawing.Size(100, 60);
+            this.new_game.TabIndex = 4;
+            this.new_game.Text = "Joc Nou";
+            this.new_game.UseVisualStyleBackColor = false;
+            this.new_game.Click += new System.EventHandler(this.new_game_Click);
+            // 
+            // score_summary
+            // 
+            this.score_summary.AutoSize = true;
+            this.score_summary.BackColor = System.Drawing.Color.Transparent;
+            this.score_summary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.score_summary.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score_summary.ForeColor = System.Drawing.Color.LawnGreen;
+            this.score_summary.Location = new System.Drawing.Point(10, 368);
+            this.score_summary.Name = "score_summary";
+            this.score_summary.Size = new System.Drawing.Size(95, 26);
+            this.score_summary.TabIndex = 5;
+            this.score_summary.Text = "summary";
             // 
             // Sudoku
             // 
@@ -78,6 +125,9 @@ namespace Sudoku_Atestat
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(964, 623);
             this.ControlBox = false;
+            this.Controls.Add(this.score_summary);
+            this.Controls.Add(this.new_game);
+            this.Controls.Add(this.credentials);
             this.Controls.Add(this.verifica);
             this.Controls.Add(this.exit);
             this.DoubleBuffered = true;
@@ -85,14 +135,18 @@ namespace Sudoku_Atestat
             this.Name = "Sudoku";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NewAge Sudoku";
+            this.Text = "Sudoku";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Button verifica;
+        private System.Windows.Forms.Label credentials;
+        private System.Windows.Forms.Button new_game;
+        private System.Windows.Forms.Label score_summary;
     }
 }
 

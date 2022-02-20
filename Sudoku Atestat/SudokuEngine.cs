@@ -18,7 +18,7 @@ namespace Sudoku_Atestat
 
         public SudokuEngine(Point gameLocation, int gameSize, Form container)
         {
-            dropdown = new DropdownMenu9b(new string[]{ // butoane de la 1 la 9
+            dropdown = new DropdownMenu9b(container, new string[]{ // butoane de la 1 la 9
                 "1", "2", "3", "4", "5", "6", "7", "8", "9"
             });
             dropdown.Parent = container;
@@ -27,9 +27,27 @@ namespace Sudoku_Atestat
             mat.Shuffle();
 
             randomObject = new Random(); randomObject.Next(); // refresh
-            missingNumbers = randomObject.Next(10,25);
+            missingNumbers = randomObject.Next(10, 25);
 
             matB = new matriceSudoku9x9(container, gameLocation, gameSize, mat, missingNumbers, dropdown, 5);
+        }
+
+        public int nimerite
+        {
+            get { return matB.gameScore.nailedCells; }
+        }
+
+        public int gresite
+        {
+            get { return matB.gameScore.wrongCells; }
+        }
+
+        public void Reset() // joc nou
+        {
+            mat = new matrice9x9();
+            mat.Shuffle();
+            missingNumbers = randomObject.Next(10, 25);
+            matB.NewGame(mat, missingNumbers);
         }
 
         public void Start() => matB.StartGame();
@@ -218,16 +236,27 @@ namespace Sudoku_Atestat
 
     public class matriceSudoku9x9
     {
+        public struct score
+        {
+            public int nailedCells; // { public get; public set; }
+            public int wrongCells; // { public get; public set; }
+
+            public score(int nc = 0, int wc = 0)
+            {
+                this.nailedCells = nc;
+                this.wrongCells = wc;
+            }
+        }
+
         private ButtonSudoku[,] mat;
         private Form container;
         private DropdownMenu9b dropdown;
         private ButtonSudoku selectedButton = null;
         private int buttonShadowWidth = 3;
 
-        private Point gameLocation;
         private int gameSize;
-
         private bool gameState = false;
+        public score gameScore;
 
         private Color colorBdefault = Color.FromArgb(45,226,230);
         private Color colorBPending = Color.FromArgb(3,94,232);
@@ -236,13 +265,14 @@ namespace Sudoku_Atestat
         private Color colorBWrong = Color.FromArgb(222, 128, 109);
         private Color colorBSelected = Color.FromArgb(254, 117, 254);
         private Color foreColor = Color.FromArgb(151,0,204);
+        private Color mouseOverColor = Color.FromArgb(232, 194, 3);
 
         public matriceSudoku9x9(Form c, Point gl, int gs, matrice9x9 m, int missingNumbers, DropdownMenu9b drpmnu, int padding = 12)
         {
             container = c;
             dropdown = drpmnu;
-            gameLocation = gl;
             gameSize = gs;
+            gameScore = new score();
             mat = new ButtonSudoku[9,9];
 
             int startX = gl.X, startY = gl.Y;
@@ -269,29 +299,31 @@ namespace Sudoku_Atestat
                         butonJ = j
                     };
                     b.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.FlatAppearance.MouseOverBackColor = b.isPlayable ? mouseOverColor : Color.Empty;
                     b.ForeColor = foreColor;
 
-                    if(b.isPlayable)
-                        b.Click += (o, e) =>
+                    b.Click += (o, e) =>
+                    {
+                        if (!b.isPlayable) return;
+                        if (!gameState) return;
+
+                        if (selectedButton == b)
                         {
-                            if (!gameState) return;
-                            if (selectedButton == b)
-                            {
-                                deselectButton();
-                                dropdown.Visible = false;
-                            }
-                            else
-                            {
-                                selectButton(b);
+                            deselectButton();
+                            dropdown.Visible = false;
+                        }
+                        else
+                        {
+                            selectButton(b);
 
-                                dropdown.Location = new Point(
-                                    b.Location.X + (b.butonI > 6 ? -dropdown.Width-1 : b.Width+1),
-                                    b.Location.Y + (b.butonJ > 6 ? -dropdown.Height+b.Height-2 : 0)
-                                );
+                            dropdown.Location = new Point(
+                                b.Location.X + (b.butonI > 6 ? -dropdown.Width-1 : b.Width+1),
+                                b.Location.Y + (b.butonJ > 6 ? -dropdown.Height+b.Height-2 : 0)
+                            );
 
-                                dropdown.Visible = true;
-                            }
-                        };
+                            dropdown.Visible = true;
+                        }
+                    };
 
                     mat[i, j] = b;
                     b.Parent = container;
@@ -322,6 +354,31 @@ namespace Sudoku_Atestat
             };
         }
 
+        public void NewGame(matrice9x9 m, int missingNumbers)
+        {
+            dropdown.Visible = false;
+            selectedButton = null;
+            gameState = false; // still required to press start
+
+            byte[,] fullMatrix = m.getMatrix();
+            byte[,] fillMatrix = m.AlterNewMatrix(missingNumbers).getMatrix();
+
+            //renew button texts and their colors
+            //renew isplayable!!!
+
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
+                {
+                    ButtonSudoku b = mat[i, j];
+                    b.Text = (fillMatrix[i, j] != 0 ? m.getMatrix()[i, j].ToString() : "");
+                    b.BackColor = (fillMatrix[i, j] != 0 ? colorBdefault : colorBPending);
+                    b.isPlayable = fillMatrix[i, j] == 0;
+                    b.expectedNumber = fullMatrix[i, j];
+                    b.FlatAppearance.MouseOverBackColor = b.isPlayable ? mouseOverColor : Color.Empty;
+                }
+
+        }
+
         public bool isRunning() => gameState;
 
         public void StartGame() => gameState = true;
@@ -333,16 +390,22 @@ namespace Sudoku_Atestat
             deselectButton();
 
             bool ok = true;
+            gameScore.nailedCells = gameScore.wrongCells = 0;
 
-            for(int i = 0; i < 9; i++)
-                for(int j= 0; j < 9; j++)
-                    if (!mat[i,j].isOk())
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
+                    if (!mat[i, j].isOk())
                     {
                         ok = false;
                         mat[i, j].BackColor = colorBWrong;
+                        gameScore.wrongCells++;
                     }
                     else
-                        if(mat[i,j].isPlayable) mat[i, j].BackColor = colorBRight;
+                        if (mat[i, j].isPlayable)
+                        {
+                            mat[i, j].BackColor = colorBRight;
+                            gameScore.nailedCells++;
+                        }
 
             return ok;
         }
@@ -399,18 +462,20 @@ namespace Sudoku_Atestat
 
     public class DropdownMenu9b : Panel
     {
-        private int bSize = 30;
+        private int bSize = 35;
         private List<Button> buttonList;
         private int padding = 2;
 
         public event EventHandler ButtonPicked;
 
-        public DropdownMenu9b(object[] items, int x = 0, int y = 0)
+        public DropdownMenu9b(Form container, object[] items, int x = 0, int y = 0)
         {
             Location = new Point(x, y);
             Size = new Size(bSize*3+2*padding, bSize*3+2*padding);
             buttonList = new List<Button>();
             Visible = false;
+            Parent = container;
+            BackColor = Color.CadetBlue;
 
             for(int i = 0; i < 3; i++)
                 for(int j = 0; j < 3; j++)
@@ -419,10 +484,12 @@ namespace Sudoku_Atestat
                     {
                         Location = new Point(i*(bSize+padding), j*(bSize+padding)),
                         Size = new Size(bSize, bSize),
-                        Font = new Font("Times New Roman", 15),
+                        Font = new Font("Times New Roman", 20),
                         FlatStyle = FlatStyle.Flat,
                         BackColor = Color.Aquamarine,
-                        Text = (j*3+i+1).ToString()
+                        Text = (j*3+i+1).ToString(),
+                        ForeColor = Color.DarkBlue
+                        //Parent = container
                     };
 
                     b.FlatAppearance.MouseOverBackColor = Color.CadetBlue;
