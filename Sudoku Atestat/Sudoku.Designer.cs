@@ -37,12 +37,14 @@ namespace Sudoku_Atestat
             // exit
             // 
             this.exit.BackColor = System.Drawing.Color.Salmon;
+            this.exit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("exit.BackgroundImage")));
+            this.exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.exit.FlatAppearance.BorderSize = 0;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit.Location = new System.Drawing.Point(1013, 12);
+            this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exit.Location = new System.Drawing.Point(1058, 33);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(144, 72);
+            this.exit.Size = new System.Drawing.Size(99, 56);
             this.exit.TabIndex = 1;
             this.exit.Text = "Iesire";
             this.exit.UseVisualStyleBackColor = false;
@@ -51,10 +53,13 @@ namespace Sudoku_Atestat
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.GreenYellow;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1013, 162);
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1058, 112);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 62);
+            this.button1.Size = new System.Drawing.Size(99, 56);
             this.button1.TabIndex = 2;
             this.button1.Text = "Verifica";
             this.button1.UseVisualStyleBackColor = false;
@@ -67,10 +72,15 @@ namespace Sudoku_Atestat
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1203, 623);
+            this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.exit);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Sudoku";
-            this.Text = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "NewAge Sudoku";
             this.ResumeLayout(false);
 
         }

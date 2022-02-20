@@ -222,20 +222,22 @@ namespace Sudoku_Atestat
         private Form container;
         private DropdownMenu9b dropdown;
         private ButtonSudoku selectedButton = null;
+        private int buttonShadowWidth = 3;
 
         private Point gameLocation;
         private int gameSize;
 
         private bool gameState = false;
 
-        private Color colorBdefault = Color.Wheat;
-        private Color colorBPending = Color.DarkSeaGreen;
-        private Color colorBCompletion = Color.LightBlue;
+        private Color colorBdefault = Color.FromArgb(45,226,230);
+        private Color colorBPending = Color.FromArgb(3,94,232);
+        private Color colorBCompletion = Color.FromArgb(234, 187, 252);
         private Color colorBRight = Color.LightGreen;
-        private Color colorBWrong = Color.Tomato;
-        private Color colorBSelected = Color.Magenta;
+        private Color colorBWrong = Color.FromArgb(222, 128, 109);
+        private Color colorBSelected = Color.FromArgb(254, 117, 254);
+        private Color foreColor = Color.FromArgb(151,0,204);
 
-        public matriceSudoku9x9(Form c, Point gl, int gs, matrice9x9 m, int missingNumbers, DropdownMenu9b drpmnu, int padding = 2)
+        public matriceSudoku9x9(Form c, Point gl, int gs, matrice9x9 m, int missingNumbers, DropdownMenu9b drpmnu, int padding = 12)
         {
             container = c;
             dropdown = drpmnu;
@@ -258,7 +260,7 @@ namespace Sudoku_Atestat
                     {
                         Width = szB,
                         Height = szB,
-                        Location = new Point(i*(padding+szB) + startX, j*(padding+szB) + startY),
+                        Location = new Point(i*(padding+szB) + startX + (i/3) * padding, j*(padding+szB) + startY + (j/3) * padding),
                         expectedNumber = fullMatrix[i,j],
                         Text = (fillMatrix[i, j] != 0 ? m.getMatrix()[i, j].ToString() : ""),
                         BackColor = (fillMatrix[i, j] != 0 ? colorBdefault : colorBPending),
@@ -267,6 +269,7 @@ namespace Sudoku_Atestat
                         butonJ = j
                     };
                     b.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.ForeColor = foreColor;
 
                     if(b.isPlayable)
                         b.Click += (o, e) =>
@@ -304,15 +307,18 @@ namespace Sudoku_Atestat
                 dropdown.Visible = false;
             };
 
-            Brush br = new SolidBrush(Color.MediumPurple);
+            Brush br = new SolidBrush(Color.Tomato);
+            Brush brShadow = new SolidBrush(foreColor); //FromArgb(204, 37, 37));
 
             container.Paint += (o, e) =>
             {
-                e.Graphics.FillRectangle(br, startX, 2 * padding + 3 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal upper
-                e.Graphics.FillRectangle(br, startX, 5 * padding + 6 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal lower
+                //e.Graphics.FillRectangle(br, startX, 2 * padding + 3 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal upper
+                //e.Graphics.FillRectangle(br, startX, 5 * padding + 6 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal lower
 
-                e.Graphics.FillRectangle(br, 2 * padding + 3 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical left
-                e.Graphics.FillRectangle(br, 5 * padding + 6 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical right
+                //e.Graphics.FillRectangle(br, 2 * padding + 3 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical left
+                //e.Graphics.FillRectangle(br, 5 * padding + 6 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical right
+
+                applyButtonShadow(e.Graphics, brShadow);
             };
         }
 
@@ -360,7 +366,16 @@ namespace Sudoku_Atestat
 
             selectedButton = null;
         }
-    }
+
+        public void applyButtonShadow(Graphics gr, Brush br)
+        {
+            foreach (var btn in mat)
+            {
+                gr.FillRectangle(br, btn.Location.X + btn.Width, btn.Location.Y, buttonShadowWidth, btn.Height+ buttonShadowWidth); // vert
+                gr.FillRectangle(br, btn.Location.X, btn.Location.Y + btn.Height, btn.Width, buttonShadowWidth); // horiz
+            }
+        }
+}
 
     public class ButtonSudoku : Button
     {

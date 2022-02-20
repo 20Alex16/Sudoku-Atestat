@@ -14,16 +14,16 @@ namespace Sudoku_Atestat
     public partial class Sudoku : Form
     {
         SudokuEngine game;
-        Transversal_Lines tl;
-        RandomParticles rp;
+        //Transversal_Lines tl;
+        //RandomParticles rp;
 
         public Sudoku()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
 
-            tl = new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
-            rp = new RandomParticles(this, Color.Aquamarine, 500, 200);
+            new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
+            new RandomParticles(this, Color.Aquamarine, 500, 400);
 
             game = new SudokuEngine(new Point(50,50), 500, this);
             game.Start();
