@@ -46,7 +46,7 @@ namespace Sudoku_Atestat
             this.exit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.exit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exit.Font = new System.Drawing.Font("GhostMachine", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.Location = new System.Drawing.Point(825, 42);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(100, 60);
@@ -64,7 +64,7 @@ namespace Sudoku_Atestat
             this.verifica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.verifica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.verifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verifica.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verifica.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verifica.Location = new System.Drawing.Point(29, 42);
             this.verifica.Name = "verifica";
             this.verifica.Size = new System.Drawing.Size(100, 60);
@@ -95,7 +95,7 @@ namespace Sudoku_Atestat
             this.new_game.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.new_game.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.new_game.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.new_game.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.new_game.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_game.Location = new System.Drawing.Point(15, 534);
             this.new_game.Name = "new_game";
             this.new_game.Size = new System.Drawing.Size(100, 60);

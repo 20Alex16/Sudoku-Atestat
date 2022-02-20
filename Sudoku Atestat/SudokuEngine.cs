@@ -298,7 +298,7 @@ namespace Sudoku_Atestat
                         butonI = i,
                         butonJ = j
                     };
-                    b.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.Font = new Font("GhostMachine", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                     b.FlatAppearance.MouseOverBackColor = b.isPlayable ? mouseOverColor : Color.Empty;
                     b.ForeColor = foreColor;
 
@@ -484,7 +484,7 @@ namespace Sudoku_Atestat
                     {
                         Location = new Point(i*(bSize+padding), j*(bSize+padding)),
                         Size = new Size(bSize, bSize),
-                        Font = new Font("Times New Roman", 20),
+                        Font = new Font("GhostMachine", 16),
                         FlatStyle = FlatStyle.Flat,
                         BackColor = Color.Aquamarine,
                         Text = (j*3+i+1).ToString(),

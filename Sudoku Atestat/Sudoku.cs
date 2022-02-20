@@ -25,7 +25,7 @@ namespace Sudoku_Atestat
             verifica.Parent = this;
 
             new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
-            new RandomParticles(this, Color.Aquamarine, 500, 400);
+            new RandomParticles(this, Color.Aquamarine, 500, 600);
 
             new_game.FlatAppearance.MouseOverBackColor = exit.FlatAppearance.MouseOverBackColor = verifica.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 5, 247, 174);
 
@@ -44,7 +44,8 @@ namespace Sudoku_Atestat
             game.Verifica();
 
             score_summary.Text =
-            $"Scor precedent: \nGresite: {game.gresite} \n" + 
+            $"Scor precedent: \nSpatii: {game.gresite+game.nimerite}\n" + 
+            $"Gresite: {game.gresite} \n" + 
             $"Corecte: {game.nimerite} \n" + 
             $"Rata succes: {Math.Round(100.0*game.nimerite/game.gresite, 2)}%";
 
