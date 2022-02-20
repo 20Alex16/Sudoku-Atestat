@@ -29,18 +29,10 @@ namespace Sudoku_Atestat
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sudoku));
             this.exit = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Location = new System.Drawing.Point(52, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(509, 415);
-            this.panel1.TabIndex = 0;
             // 
             // exit
             // 
@@ -48,7 +40,7 @@ namespace Sudoku_Atestat
             this.exit.FlatAppearance.BorderSize = 0;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exit.Location = new System.Drawing.Point(583, 23);
+            this.exit.Location = new System.Drawing.Point(1013, 12);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(144, 72);
             this.exit.TabIndex = 1;
@@ -60,7 +52,7 @@ namespace Sudoku_Atestat
             // 
             this.button1.BackColor = System.Drawing.Color.GreenYellow;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(583, 205);
+            this.button1.Location = new System.Drawing.Point(1013, 162);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 62);
             this.button1.TabIndex = 2;
@@ -72,12 +64,11 @@ namespace Sudoku_Atestat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Sudoku_Atestat.Properties.Resources.tai_chi;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1082, 617);
+            this.ClientSize = new System.Drawing.Size(1203, 623);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.exit);
-            this.Controls.Add(this.panel1);
             this.Name = "Sudoku";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -85,8 +76,6 @@ namespace Sudoku_Atestat
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Button button1;
     }

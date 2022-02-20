@@ -7,26 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdvancedEffects;
 
 namespace Sudoku_Atestat
 {
     public partial class Sudoku : Form
     {
         SudokuEngine game;
-        AdvancedGraphics ad;
+        Transversal_Lines tl;
+        RandomParticles rp;
 
         public Sudoku()
         {
             InitializeComponent();
-
-            panel1.Parent = this;
-            panel1.BackColor = Color.Transparent;
-            //TransparencyKey = Color.BlanchedAlmond;
-
-            game = new SudokuEngine(panel1, Properties.Resources.sudokuRez);
-            ad = new AdvancedGraphics(this);
             this.DoubleBuffered = true;
 
+            tl = new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
+            rp = new RandomParticles(this, Color.Aquamarine, 500, 200);
+
+            game = new SudokuEngine(new Point(50,50), 500, this);
             game.Start();
         }
 

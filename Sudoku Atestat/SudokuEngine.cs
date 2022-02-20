@@ -16,7 +16,7 @@ namespace Sudoku_Atestat
         private Random randomObject;
         private DropdownMenu9b dropdown;
 
-        public SudokuEngine(Panel container, string solvedMatrix)
+        public SudokuEngine(Point gameLocation, int gameSize, Form container)
         {
             dropdown = new DropdownMenu9b(new string[]{ // butoane de la 1 la 9
                 "1", "2", "3", "4", "5", "6", "7", "8", "9"
@@ -29,7 +29,7 @@ namespace Sudoku_Atestat
             randomObject = new Random(); randomObject.Next(); // refresh
             missingNumbers = randomObject.Next(10,25);
 
-            matB = new matriceSudoku9x9(container, mat, missingNumbers, dropdown, 5);
+            matB = new matriceSudoku9x9(container, gameLocation, gameSize, mat, missingNumbers, dropdown, 5);
         }
 
         public void Start() => matB.StartGame();
@@ -219,9 +219,12 @@ namespace Sudoku_Atestat
     public class matriceSudoku9x9
     {
         private ButtonSudoku[,] mat;
-        private Panel container;
+        private Form container;
         private DropdownMenu9b dropdown;
         private ButtonSudoku selectedButton = null;
+
+        private Point gameLocation;
+        private int gameSize;
 
         private bool gameState = false;
 
@@ -232,13 +235,17 @@ namespace Sudoku_Atestat
         private Color colorBWrong = Color.Tomato;
         private Color colorBSelected = Color.Magenta;
 
-        public matriceSudoku9x9(Panel c, matrice9x9 m, int missingNumbers, DropdownMenu9b drpmnu, int padding = 2)
+        public matriceSudoku9x9(Form c, Point gl, int gs, matrice9x9 m, int missingNumbers, DropdownMenu9b drpmnu, int padding = 2)
         {
             container = c;
             dropdown = drpmnu;
+            gameLocation = gl;
+            gameSize = gs;
             mat = new ButtonSudoku[9,9];
 
-            int sz = Math.Min(container.Width, container.Height); // totalSize
+            int startX = gl.X, startY = gl.Y;
+
+            int sz = gameSize; //Math.Min(gameWidth, gameHeight); // totalSize
             int szB = (sz-8*padding)/9; // buttonSize
 
             byte[,] fullMatrix = m.getMatrix();
@@ -251,7 +258,7 @@ namespace Sudoku_Atestat
                     {
                         Width = szB,
                         Height = szB,
-                        Location = new Point(i*(padding+szB), j*(padding+szB)),
+                        Location = new Point(i*(padding+szB) + startX, j*(padding+szB) + startY),
                         expectedNumber = fullMatrix[i,j],
                         Text = (fillMatrix[i, j] != 0 ? m.getMatrix()[i, j].ToString() : ""),
                         BackColor = (fillMatrix[i, j] != 0 ? colorBdefault : colorBPending),
@@ -259,7 +266,7 @@ namespace Sudoku_Atestat
                         butonI = i,
                         butonJ = j
                     };
-                    b.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
 
                     if(b.isPlayable)
                         b.Click += (o, e) =>
@@ -297,16 +304,15 @@ namespace Sudoku_Atestat
                 dropdown.Visible = false;
             };
 
-            Graphics graphics = container.CreateGraphics();
             Brush br = new SolidBrush(Color.MediumPurple);
 
             container.Paint += (o, e) =>
             {
-                graphics.FillRectangle(br, 0, 2 * padding + 3 * szB, 8 * padding + 9 * szB, padding); // horizontal upper
-                graphics.FillRectangle(br, 0, 5 * padding + 6 * szB, 8 * padding + 9 * szB, padding); // horizontal lower
+                e.Graphics.FillRectangle(br, startX, 2 * padding + 3 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal upper
+                e.Graphics.FillRectangle(br, startX, 5 * padding + 6 * szB + startY, 8 * padding + 9 * szB, padding); // horizontal lower
 
-                graphics.FillRectangle(br, 2 * padding + 3 * szB, 0, padding, 8 * padding + 9 * szB); // vertical left
-                graphics.FillRectangle(br, 5 * padding + 6 * szB, 0, padding, 8 * padding + 9 * szB); // vertical right
+                e.Graphics.FillRectangle(br, 2 * padding + 3 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical left
+                e.Graphics.FillRectangle(br, 5 * padding + 6 * szB + startX, startY, padding, 8 * padding + 9 * szB); // vertical right
             };
         }
 
