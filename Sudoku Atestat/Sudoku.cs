@@ -20,12 +20,16 @@ namespace Sudoku_Atestat
         public Sudoku()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
+
+            exit.Parent = this;
+            verifica.Parent = this;
 
             new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
             new RandomParticles(this, Color.Aquamarine, 500, 400);
 
-            game = new SudokuEngine(new Point(50,50), 500, this);
+            exit.FlatAppearance.MouseOverBackColor = verifica.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 5, 247, 174);
+
+            game = new SudokuEngine(new Point(220,50), 500, this);
             game.Start();
         }
 
@@ -34,7 +38,7 @@ namespace Sudoku_Atestat
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void verifica_Click(object sender, EventArgs e)
         {
             Console.WriteLine(game.Verifica());
         }
