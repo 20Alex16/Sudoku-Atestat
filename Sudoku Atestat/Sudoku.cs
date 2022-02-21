@@ -30,7 +30,7 @@ namespace Sudoku_Atestat
             new_game.FlatAppearance.MouseOverBackColor = exit.FlatAppearance.MouseOverBackColor = verifica.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 5, 247, 174);
 
             score_summary.Visible = false;
-            game = new SudokuEngine(new Point(220,50), 500, this);
+            game = new SudokuEngine(new Point(250,50), 500, this);
             game.Start();
         }
 
@@ -44,10 +44,10 @@ namespace Sudoku_Atestat
             game.Verifica();
 
             score_summary.Text =
-            $"Scor precedent: \nSpatii: {game.gresite+game.nimerite}\n" + 
-            $"Gresite: {game.gresite} \n" + 
-            $"Corecte: {game.nimerite} \n" + 
-            $"Rata succes: {Math.Round(100.0*game.nimerite/game.gresite, 2)}%";
+            $"Scor precedent: \nSpatii: {game.gresite + game.nimerite}\n" +
+            $"Gresite: {game.gresite} \n" +
+            $"Corecte: {game.nimerite} \n" +
+            $"Rata succes: {Math.Round(100.0 * game.nimerite / (game.gresite + game.nimerite), 2)}%";
 
             score_summary.Visible = true;
         }
