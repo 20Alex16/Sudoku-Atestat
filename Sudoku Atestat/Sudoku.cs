@@ -14,8 +14,8 @@ namespace Sudoku_Atestat
     public partial class Sudoku : Form
     {
         SudokuEngine game;
-        //Transversal_Lines tl;
-        //RandomParticles rp;
+        Transversal_Lines tl;
+        RandomParticles rp;
 
         public Sudoku()
         {
@@ -24,10 +24,14 @@ namespace Sudoku_Atestat
             exit.Parent = this;
             verifica.Parent = this;
 
-            new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
-            new RandomParticles(this, Color.Aquamarine, 500, 600);
+            tl = new Transversal_Lines(this, -40, 2, Color.Magenta, 20);
+            rp = new RandomParticles(this, Color.Aquamarine, 500, 600);
 
-            new_game.FlatAppearance.MouseOverBackColor = exit.FlatAppearance.MouseOverBackColor = verifica.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 5, 247, 174);
+            new_game.FlatAppearance.MouseOverBackColor =
+                exit.FlatAppearance.MouseOverBackColor =
+                verifica.FlatAppearance.MouseOverBackColor =
+                effects.FlatAppearance.MouseOverBackColor =
+                Color.FromArgb(70, 5, 247, 174);
 
             score_summary.Visible = false;
             game = new SudokuEngine(new Point(250,50), 500, this);
@@ -56,6 +60,13 @@ namespace Sudoku_Atestat
         {
             game.Reset();
             game.Start();
+        }
+
+        private void effects_Click(object sender, EventArgs e)
+        {
+            tl.ToggleActivation();
+            rp.ToggleActivation();
+            Refresh();
         }
     }
 }

@@ -24,6 +24,18 @@ namespace AdvancedEffects
         private Timer updateTimer = new Timer();
         private Random rand = new Random();
 
+        private bool effectActive = true;
+
+        public void ToggleActivation()
+        {
+            effectActive = !effectActive;
+
+            if (effectActive)
+                updateTimer.Start();
+            else
+                updateTimer.Stop();
+        }
+
         public Transversal_Lines(Form c, double _angle = 30, double _step = 4, Color? _color = null, int _count = 50)
         {
             container = c;
@@ -48,6 +60,7 @@ namespace AdvancedEffects
 
             container.Paint += (o, e) =>
             {
+                if (!effectActive) return;
                 foreach (var poly in polygons)
                     movePolygon(poly);
                 drawPolygons(e.Graphics);
@@ -151,6 +164,18 @@ namespace AdvancedEffects
 
         private List<particle> particles;
 
+        private bool effectActive = true;
+
+        public void ToggleActivation()
+        {
+            effectActive = !effectActive;
+
+            if (effectActive)
+                update.Start();
+            else
+                update.Stop();
+        }
+
         public RandomParticles(Form c, Color? _color = null, int pc = 500, double rf = 500)
         {
             particleCount = pc;
@@ -175,6 +200,7 @@ namespace AdvancedEffects
 
             container.Paint += (o, e) =>
             {
+                if (!effectActive) return;
                 foreach (var part in particles)
                     part.update(rand, containerW, containerH, true);
                 drawParticles(e.Graphics);

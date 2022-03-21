@@ -35,6 +35,7 @@ namespace Sudoku_Atestat
             this.credentials = new System.Windows.Forms.Label();
             this.new_game = new System.Windows.Forms.Button();
             this.score_summary = new System.Windows.Forms.Label();
+            this.effects = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // exit
@@ -117,6 +118,24 @@ namespace Sudoku_Atestat
             this.score_summary.TabIndex = 5;
             this.score_summary.Text = "summary";
             // 
+            // effects
+            // 
+            this.effects.BackColor = System.Drawing.Color.Transparent;
+            this.effects.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("effects.BackgroundImage")));
+            this.effects.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.effects.FlatAppearance.BorderSize = 0;
+            this.effects.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.effects.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.effects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.effects.Font = new System.Drawing.Font("GhostMachine", 18F);
+            this.effects.Location = new System.Drawing.Point(822, 132);
+            this.effects.Name = "effects";
+            this.effects.Size = new System.Drawing.Size(100, 60);
+            this.effects.TabIndex = 6;
+            this.effects.Text = "Efecte";
+            this.effects.UseVisualStyleBackColor = false;
+            this.effects.Click += new System.EventHandler(this.effects_Click);
+            // 
             // Sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,6 +144,7 @@ namespace Sudoku_Atestat
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(964, 623);
             this.ControlBox = false;
+            this.Controls.Add(this.effects);
             this.Controls.Add(this.score_summary);
             this.Controls.Add(this.new_game);
             this.Controls.Add(this.credentials);
@@ -148,6 +168,7 @@ namespace Sudoku_Atestat
         private System.Windows.Forms.Label credentials;
         private System.Windows.Forms.Button new_game;
         private System.Windows.Forms.Label score_summary;
+        private System.Windows.Forms.Button effects;
     }
 }
 
