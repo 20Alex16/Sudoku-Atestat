@@ -253,6 +253,7 @@ namespace Sudoku_Atestat
         private DropdownMenu9b dropdown;
         private ButtonSudoku selectedButton = null;
         private int buttonShadowWidth = 3;
+        private RevealValue valoare_adevarata;
 
         private int gameSize;
         private bool gameState = false;
@@ -280,6 +281,8 @@ namespace Sudoku_Atestat
             int sz = gameSize; //Math.Min(gameWidth, gameHeight); // totalSize
             int szB = (sz-8*padding)/9; // buttonSize
 
+            valoare_adevarata = new RevealValue(container, szB, szB, 22, foreColor, Color.Yellow);
+
             byte[,] fullMatrix = m.getMatrix();
             byte[,] fillMatrix = m.AlterNewMatrix(missingNumbers).getMatrix();
 
@@ -298,7 +301,8 @@ namespace Sudoku_Atestat
                         butonI = i,
                         butonJ = j
                     };
-                    b.Font = new Font("GhostMachine", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    //b.Font = new Font("Seven Segment", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.Font = new Font(UseCustomFont.getFont(), 22F);//"Seven Segment", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                     b.FlatAppearance.MouseOverBackColor = b.isPlayable ? mouseOverColor : Color.Empty;
                     b.ForeColor = foreColor;
 
@@ -324,6 +328,23 @@ namespace Sudoku_Atestat
                             dropdown.Visible = true;
                         }
                     };
+
+                    b.MouseEnter += (o, e) =>
+                    {
+                        if (gameState) return;
+                        if (!b.isPlayable) return;
+                        if (b.expectedNumber.ToString() == b.Text) return;
+
+                        valoare_adevarata.Value = b.expectedNumber;
+
+                        valoare_adevarata.Location = new Point(
+                            b.Location.X + (b.butonI > 6 ? -valoare_adevarata.Width - 3 : valoare_adevarata.Width + 3),
+                            b.Location.Y + (b.butonJ > 6 ? -valoare_adevarata.Height - 3 : valoare_adevarata.Height + 3)
+                        );
+                        valoare_adevarata.Visible = true;
+                    };
+
+                    b.MouseLeave += (o, e) => valoare_adevarata.Visible = false;
 
                     mat[i, j] = b;
                     b.Parent = container;
@@ -357,6 +378,7 @@ namespace Sudoku_Atestat
         public void NewGame(matrice9x9 m, int missingNumbers)
         {
             dropdown.Visible = false;
+            valoare_adevarata.Visible = false;
             selectedButton = null;
             gameState = false; // still required to press start
 
@@ -438,7 +460,7 @@ namespace Sudoku_Atestat
                 gr.FillRectangle(br, btn.Location.X, btn.Location.Y + btn.Height, btn.Width, buttonShadowWidth); // horiz
             }
         }
-}
+    }
 
     public class ButtonSudoku : Button
     {
@@ -482,9 +504,11 @@ namespace Sudoku_Atestat
                 {
                     Button b = new Button()
                     {
-                        Location = new Point(i*(bSize+padding), j*(bSize+padding)),
+                        Location = new Point(i * (bSize + padding), j * (bSize + padding)),
                         Size = new Size(bSize, bSize),
-                        Font = new Font("GhostMachine", 16),
+                        //Font = new Font("Seven Segment", 16),
+                        //Font = new Font(UseCustomFont.getFont(), 16F, FontStyle.Bold), //"Seven Segment", 16),
+                        Font = new Font(UseCustomFont.getFont(), 16F, FontStyle.Bold),
                         FlatStyle = FlatStyle.Flat,
                         BackColor = Color.Aquamarine,
                         Text = (j*3+i+1).ToString(),
@@ -499,6 +523,37 @@ namespace Sudoku_Atestat
                     buttonList.Add(b);
                     b.Parent = this;
                 }
+        }
+    }
+
+    public class RevealValue : Label
+    {
+        private int value = 0;
+
+        public RevealValue(Form container, int sizeX, int sizeY, int fSize, Color fc, Color bc)
+        {
+            Text = value.ToString();
+            Size = new Size(sizeX, sizeY);
+            ForeColor = fc;
+            BackColor = bc;
+            Font = new Font(UseCustomFont.getFont(), fSize, FontStyle.Bold);
+            Visible = false;
+            Parent = container;
+
+            TextAlign = ContentAlignment.MiddleCenter;
+        }
+
+        public int Value
+        {
+            get
+            {
+                return this.value;
+            }
+            set
+            {
+                this.value = value;
+                Text = value.ToString();
+            }
         }
     }
 

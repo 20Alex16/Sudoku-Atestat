@@ -33,7 +33,18 @@ namespace Sudoku_Atestat
                 effects.FlatAppearance.MouseOverBackColor =
                 Color.FromArgb(70, 5, 247, 174);
 
+            
+            exit.Font =
+                verifica.Font =
+                credentials.Font =
+                new_game.Font =
+                effects.Font =
+                score_summary.Font = 
+                new Font(UseCustomFont.getFont(), 17F, FontStyle.Bold);
+            
+
             score_summary.Visible = false;
+            score_summary.BackColor = Color.FromArgb(200, 50,50,50);
             game = new SudokuEngine(new Point(250,50), 500, this);
             game.Start();
         }

@@ -61,12 +61,12 @@ namespace Sudoku_Atestat.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static System.Drawing.Bitmap tai_chi {
+        public static byte[] Seven_Segment {
             get {
-                object obj = ResourceManager.GetObject("tai_chi", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Seven_Segment", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -47,7 +47,7 @@ namespace Sudoku_Atestat
             this.exit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.exit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exit.Font = new System.Drawing.Font("GhostMachine", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exit.Font = new System.Drawing.Font("Seven Segment", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exit.Location = new System.Drawing.Point(825, 42);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(100, 60);
@@ -65,7 +65,7 @@ namespace Sudoku_Atestat
             this.verifica.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.verifica.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.verifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verifica.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verifica.Font = new System.Drawing.Font("Showcard Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.verifica.Location = new System.Drawing.Point(29, 42);
             this.verifica.Name = "verifica";
             this.verifica.Size = new System.Drawing.Size(100, 60);
@@ -79,11 +79,11 @@ namespace Sudoku_Atestat
             this.credentials.AutoSize = true;
             this.credentials.BackColor = System.Drawing.Color.Transparent;
             this.credentials.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.credentials.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.credentials.Font = new System.Drawing.Font("Seven Segment", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.credentials.ForeColor = System.Drawing.Color.DarkViolet;
-            this.credentials.Location = new System.Drawing.Point(528, 588);
+            this.credentials.Location = new System.Drawing.Point(420, 592);
             this.credentials.Name = "credentials";
-            this.credentials.Size = new System.Drawing.Size(424, 26);
+            this.credentials.Size = new System.Drawing.Size(502, 22);
             this.credentials.TabIndex = 3;
             this.credentials.Text = "Atestat la informatica -Tripa Alexandru - XII A";
             // 
@@ -96,7 +96,7 @@ namespace Sudoku_Atestat
             this.new_game.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.new_game.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.new_game.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.new_game.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_game.Font = new System.Drawing.Font("Seven Segment", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_game.Location = new System.Drawing.Point(15, 534);
             this.new_game.Name = "new_game";
             this.new_game.Size = new System.Drawing.Size(100, 60);
@@ -108,13 +108,14 @@ namespace Sudoku_Atestat
             // score_summary
             // 
             this.score_summary.AutoSize = true;
-            this.score_summary.BackColor = System.Drawing.Color.Transparent;
+            this.score_summary.BackColor = System.Drawing.Color.Silver;
             this.score_summary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.score_summary.Font = new System.Drawing.Font("GhostMachine", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.score_summary.Font = new System.Drawing.Font("Seven Segment", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.score_summary.ForeColor = System.Drawing.Color.LawnGreen;
             this.score_summary.Location = new System.Drawing.Point(10, 368);
             this.score_summary.Name = "score_summary";
-            this.score_summary.Size = new System.Drawing.Size(95, 26);
+            this.score_summary.Padding = new System.Windows.Forms.Padding(7);
+            this.score_summary.Size = new System.Drawing.Size(114, 36);
             this.score_summary.TabIndex = 5;
             this.score_summary.Text = "summary";
             // 
@@ -127,7 +128,7 @@ namespace Sudoku_Atestat
             this.effects.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.effects.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.effects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.effects.Font = new System.Drawing.Font("GhostMachine", 18F);
+            this.effects.Font = new System.Drawing.Font("Seven Segment", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.effects.Location = new System.Drawing.Point(822, 132);
             this.effects.Name = "effects";
             this.effects.Size = new System.Drawing.Size(100, 60);

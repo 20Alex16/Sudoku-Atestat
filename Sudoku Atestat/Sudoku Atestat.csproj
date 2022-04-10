@@ -57,6 +57,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SudokuEngine.cs" />
+    <Compile Include="UseCustomFont.cs" />
     <EmbeddedResource Include="Sudoku.resx">
       <DependentUpon>Sudoku.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,7 +85,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tai-chi.jpg" />
+    <None Include="Resources\Seven Segment.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
