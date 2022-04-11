@@ -41,7 +41,12 @@ namespace Sudoku_Atestat
                 effects.Font =
                 score_summary.Font = 
                 new Font(UseCustomFont.getFont(), 17F, FontStyle.Bold);
-            
+
+
+            info_label.Visible = false;
+            info.MouseEnter += (o, e) => info_label.Visible = true;
+            info.MouseLeave += (o, e) => info_label.Visible = false;
+
 
             score_summary.Visible = false;
             score_summary.BackColor = Color.FromArgb(200, 50,50,50);

@@ -36,6 +36,8 @@ namespace Sudoku_Atestat
             this.new_game = new System.Windows.Forms.Button();
             this.score_summary = new System.Windows.Forms.Label();
             this.effects = new System.Windows.Forms.Button();
+            this.info = new System.Windows.Forms.Button();
+            this.info_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exit
@@ -137,6 +139,38 @@ namespace Sudoku_Atestat
             this.effects.UseVisualStyleBackColor = false;
             this.effects.Click += new System.EventHandler(this.effects_Click);
             // 
+            // info
+            // 
+            this.info.BackColor = System.Drawing.Color.Transparent;
+            this.info.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("info.BackgroundImage")));
+            this.info.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.info.Cursor = System.Windows.Forms.Cursors.Default;
+            this.info.FlatAppearance.BorderSize = 0;
+            this.info.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.info.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.info.Location = new System.Drawing.Point(865, 511);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(60, 60);
+            this.info.TabIndex = 7;
+            this.info.UseVisualStyleBackColor = false;
+            // 
+            // info_label
+            // 
+            this.info_label.AutoSize = true;
+            this.info_label.BackColor = System.Drawing.Color.Plum;
+            this.info_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.info_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.info_label.Font = new System.Drawing.Font("MS Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.info_label.ForeColor = System.Drawing.Color.Indigo;
+            this.info_label.Location = new System.Drawing.Point(427, 396);
+            this.info_label.Name = "info_label";
+            this.info_label.Size = new System.Drawing.Size(432, 149);
+            this.info_label.TabIndex = 8;
+            this.info_label.Text = "Scopul jocului este sa completezi\r\nfiecare celula libera cu un numar\r\nde la 1 la " +
+    "9.\r\nPe fiecare rand, coloana sau\r\nzona(3x3 celule) trebuie sa\r\napara fiecare num" +
+    "ar o singura data.\r\nSucces!";
+            // 
             // Sudoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +179,8 @@ namespace Sudoku_Atestat
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(964, 623);
             this.ControlBox = false;
+            this.Controls.Add(this.info_label);
+            this.Controls.Add(this.info);
             this.Controls.Add(this.effects);
             this.Controls.Add(this.score_summary);
             this.Controls.Add(this.new_game);
@@ -170,6 +206,8 @@ namespace Sudoku_Atestat
         private System.Windows.Forms.Button new_game;
         private System.Windows.Forms.Label score_summary;
         private System.Windows.Forms.Button effects;
+        private System.Windows.Forms.Button info;
+        private System.Windows.Forms.Label info_label;
     }
 }
 
