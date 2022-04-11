@@ -21,7 +21,7 @@ namespace Sudoku_Atestat
             {
                 pfc.AddFontFile("Seven Segment.ttf");
             }
-            catch (IOException e) {
+            catch (Exception e) {
                 pfc.AddFontFile("../../Resources/Seven Segment.ttf");
             }
 

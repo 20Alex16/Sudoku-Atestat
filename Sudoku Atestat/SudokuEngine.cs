@@ -302,7 +302,7 @@ namespace Sudoku_Atestat
                         butonJ = j
                     };
                     //b.Font = new Font("Seven Segment", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                    b.Font = new Font(UseCustomFont.getFont(), 22F);//"Seven Segment", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+                    b.Font = new Font(UseCustomFont.getFont(), 22F, FontStyle.Bold);//"Seven Segment", 22F);//new Font("Microsoft Sans Serif", 22F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
                     b.FlatAppearance.MouseOverBackColor = b.isPlayable ? mouseOverColor : Color.Empty;
                     b.ForeColor = foreColor;
 
